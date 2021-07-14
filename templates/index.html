@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% block link %}
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+
+{% endblock link %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+<div class="contatiner-fluid ">
+    <!-- <div class="nav-scroller py-1 mb-2">
+        <div class="contatiner-fluid">
+            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, minima.</h5>
+        </div>
+    </div> -->
+
+    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark py-0">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic">Your Stunning Blog Is Just a Few Minutes Away.</h1>
+            <p class="lead my-3">Create crisp, visually appealing, highly engaging, immersive and compelling content. <i
+                    class="bi bi-emoji-smile"></i> <i class="bi bi-emoji-smile"></i> <i
+                    class="bi bi-emoji-smile-fill"></i></p>
+            <p class="lead mb-0text-white font-weight-bold">Keep Exploring...</p>
+            <p class="lead mb-0 text-white font-weight-bold text-right text-muted">Did not represent the final version!!
+            </p>
+        </div>
+    </div>
+    <div class="row mb-2 mx-2">
+        {% for element in data %}
+        <div class="col-md-6">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-1 text-info">{{element.user}}</strong>
+
+                    <h3 class="mb-0">{{element.title | truncatechars:20}}</h3>
+                    <div class="mb-1 text-muted">{{element.timestamp}}</div>
+                    <p class="card-text mb-auto">{{element.desc |truncatechars:80}}</p>
+                    <div class="my-1 text-muted text-right">- {{element.user.full_name}}</div>
+                    <div class="row">
+                        <a href="/blog/{{element.title_slug}}" class="btn btn-success btn-sm">Continue reading <i
+                                class="bi bi-book-half"></i></a>
+                        {% if request.user.is_authenticated and request.user == element.user %}
+                        <a href="/edit/{{element.title_slug}}" class="btn btn-info btn-sm mx-2" type="button">Edit <i
+                                class="bi bi-pencil-square"></i></a>
+                        {% endif %}
+                        {% if request.user.is_authenticated and request.user == element.user or request.user.is_admin %}
+                        <a href="/delete/{{element.id}}" class="btn btn-danger btn-sm ml-1">Delete <i
+                                class="bi bi-trash-fill"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <!-- <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
+                        role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                        focusable="false"> -->
+                    <img src="https://source.unsplash.com/1600x900/?nature,water" width="200" height="250"
+                        alt="blog-img">
+                    <title>Image</title>
+                    <!-- <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                        dy=".3em">Thumbnail</text> -->
+                    <!-- </svg> -->
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8 blog-main">
+            <h3 class="pb-4 mb-4 font-italic border-bottom">
+                Lorem ipsum dolor sit amet.
+            </h3>
+
+            <div class="blog-post">
+                <h2 class="blog-post-title">Lorem, ipsum dolor.</h2>
+                <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate sapiente similique architecto!
+                    Fugiat quo accusamus ratione at nostrum suscipit explicabo..</p>
+                <hr>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam minus eligendi, suscipit fugit id
+                    voluptatum, quo fuga nihil molestiae assumenda cupiditate ipsum obcaecati placeat tenetur odit.
+                    Delectus enim ducimus ratione ad adipisci consequatur commodi, dolorum praesentium ipsum obcaecati
+                    perspiciatis ea ab, deserunt dignissimos, dolore eveniet quidem sunt similique dolor culpa.</p>
+                <blockquote>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque placeat velit?
+                        <strong>Lorem ipsum dolor sit amet.</strong>. Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit. Totam quis excepturi ducimus laborum nulla veritatis expedita. Nemo repellendus rerum
+                        laborum corporis alias quaerat a dolorem? Nam quia, aliquid cupiditate officia tenetur sed
+                        minus, asperiores dignissimos amet, quam rerum incidunt fuga.
+                    </p>
+                </blockquote>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus, iure, voluptas provident placeat
+                    magnam officiis minus corporis animi quaerat quidem minima laboriosam accusamus ad enim, consectetur
+                    sit repellat! Animi excepturi veniam consequuntur, facere ea exercitationem, voluptate incidunt
+                    rerum itaque repellendus quibusdam, dolorem culpa. Autem exercitationem adipisci fugiat maxime
+                    labore deserunt!
+                </p>
+            </div>
+            <!-- /.blog-post -->
+
+            <nav class="blog-pagination">
+                <a class="btn btn-outline-primary" href="#">Older</a>
+                <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+            </nav>
+
+        </div><!-- /.blog-main -->
+
+        <aside class="col-md-4 blog-sidebar">
+            <div class="p-4 mb-3 bg-light rounded">
+                <h4 class="font-italic">About</h4>
+                <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi magni aut sapiente
+                    deserunt? Voluptates fuga, ipsa cupiditate veniam nihil error doloremque eum molestias laudantium
+                    atque molestiae dicta, eius, explicabo beatae quo corrupti.</p>
+            </div>
+
+
+            <div class="p-4">
+                <h4 class="font-italic">Elsewhere</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://github.com/Suryaaa-Rathore"><i class="bi bi-github"> </i>GitHub</a></li>
+                    <li><a href="https://twitter.com/rathoresurya21"><i class="bi bi-twitter"></i> Twitter</a></li>
+                    <li><a href="https://www.facebook.com/suryapratapr1"><i class="bi bi-facebook"> </i>Facebook</a>
+                    </li>
+                    <li><a href="https://www.linkedin.com/in/surya-pratap-singh-rathore-a06bb7153"><i
+                                class="bi bi-linkedin">
+                            </i>LinkedIn</a>
+                    </li>
+                </ol>
+            </div>
+        </aside><!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+</main><!-- /.container -->
+</div>
+<footer class="blog-footer">
+    <p>Created By: Surya Pratap Singh Rathore</p>
+    <a href="#">Back to top</a>
+    </p>
+</footer>
+{% endblock body %}
